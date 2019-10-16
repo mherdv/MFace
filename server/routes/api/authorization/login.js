@@ -1,4 +1,5 @@
-module.exports.login = (req,res)=>{
-    console.log(req.body);
+
+module.exports = (UserSchema, req, res) => {
+    console.log(req.body, "tray to login");
     res.send('success')
 }

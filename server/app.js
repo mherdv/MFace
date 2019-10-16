@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const auth = require('./routes/api/authorization')
 
-
+// adding middlewares 
 app.use(bodyParser.json())
 
-app.use('/api/authorization',auth)
+// cultivation of routes 
+app.use('/', require('./routes'))
 
 
 module.exports = app;

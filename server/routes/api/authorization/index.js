@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const handleLogin = require('./login').login;
 
+const UsersSchema = require('../../../models/User');
+console.log(require('./login'))
 
-router.post('/login',handleLogin);
+router.post('/login', require('./login').bind(null, UsersSchema));
+router.post('/registration', require('./registration'));
 
 module.exports = router;
