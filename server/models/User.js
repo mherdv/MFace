@@ -50,6 +50,9 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: [true, 'user email is required']
+    },
+    fullName: {
+        type: String
     }
 });
 
