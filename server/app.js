@@ -7,6 +7,10 @@ const connectedMongoose = require('./serverConnection');
 app.use(bodyParser.json())
 
 // cultivation of routes 
+app.use(function (req, res, next) {
+    res.header("Content-Type", 'application/json');
+    next();
+});
 app.use('/', require('./routes'))
 
 
