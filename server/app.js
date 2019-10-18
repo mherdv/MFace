@@ -1,16 +1,17 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const connectedMongoose = require('./serverConnection');
+
+// use it before all route definitions
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // adding middlewares 
 app.use(bodyParser.json())
 
 // cultivation of routes 
-app.use(function (req, res, next) {
-    res.header("Content-Type", 'application/json');
-    next();
-});
+
 app.use('/', require('./routes'))
 
 

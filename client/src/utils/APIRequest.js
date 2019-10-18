@@ -14,7 +14,7 @@ const APIRequest = async ({
         }
     }
 
-    console.log(headers)
+    // console.log(APIRequest.headers)
     await axios[method](path, body, headers || {}).then(callback);
 }
 

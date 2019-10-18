@@ -8,6 +8,6 @@ import { loginUser } from './redux/actions/apis/user';
 
 const store = createStore(states, applyMiddleware(setHeader, thunk));
 
-store.dispatch(loginUser({ email: 'mherdv@gmail.com', password: "6548978" }))
+store.dispatch(loginUser({ email: 'mherdv@gmail.com', password: "123456" }))
 
 export default store;

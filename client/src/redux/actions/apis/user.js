@@ -3,9 +3,8 @@ import APIRequest from '../../../utils/APIRequest';
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
 
-
     const reqParams = {
-        path: 'http://localhost:8080/authorization/login',
+        path: 'http://localhost:8080/api/authorization/login',
         method: 'post',
         body: { email, password },
         headers: {
@@ -15,6 +14,8 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
             console.log(res);
         }
     }
-    await APIRequest(reqParams)
+    const response = await APIRequest(reqParams);
+
+    //todo handle response if status 1 dispatch adding user else dispatch showing error
 
 } 
