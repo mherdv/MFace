@@ -1,0 +1,13 @@
+export const presets = ['module:metro-react-native-babel-preset'];
+
+console.log(148484)
+export const plugins = [
+    'babel-plugin-styled-components',
+    [
+        'babel-plugin-root-import',
+        {
+            rootPathPrefix: '~',
+            rootPathSuffix: 'src',
+        },
+    ],
+];

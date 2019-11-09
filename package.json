@@ -23,5 +23,8 @@
     "nodemon": "^1.19.3"
   },
   "prefix": "http://localhost:8080",
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-plugin-root-import": "^6.4.1",
+    "react-app-rewired": "^2.1.5"
+  }
 }
