@@ -1,0 +1,33 @@
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightblue;
+
+  & > div,
+  & > nav {
+    width: 50%;
+  }
+}
+.navbar {
+  list-style-type: none;
+  border-left: 1px solid;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 10px;
+  padding-right: 20px;
+
+  li {
+    margin-right: 10px;
+
+    a {
+      text-decoration: none;
+      color: black;
+
+      &.activeLink {
+        color: #fff;
+      }
+    }
+  }
+}

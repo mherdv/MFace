@@ -22,7 +22,7 @@ function checkTokenValidation(token) {
 function authorizeMiddleWear(req, res, next) {
 
     // todo find alternative way for this action 
-    console.log(req.headers.authorization)
+    // console.log(req.headers.authorization)
 
     const isAuthorization = req.originalUrl.split('/')[2] == 'authorization';
     if (isAuthorization) {

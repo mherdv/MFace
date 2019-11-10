@@ -5,17 +5,20 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": "./",
         "paths": {
-            "~/*": [
-                "./src/*"
-            ],
             "$components": [
-                "./src/components"
-            ],
-            "$store": [
-                "./src/store"
+                "./src/components/*"
             ],
             "$utils": [
-                "./src/utils"
+                "./src/utils/*"
+            ],
+            "$store/types": [
+                "./src/store/types"
+            ],
+            "$store": [
+                "./src/store/*"
+            ],
+            "$src": [
+                "./src/*"
             ]
         }
     }

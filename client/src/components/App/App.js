@@ -1,14 +1,31 @@
 import React from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import Authorization from '$src/pages/Authorization';
+import ProtectedRoute from '$components/ProtectedRoute';
+import MainPage from '$src/pages/MainPage';
 
-import Provider from '../Provider';
 
-function App() {
+function App({ user }) {
+
+  const { token } = user;
   return (
     <div className="App">
-      application page
+
+
+      <Router>
+        <Switch>
+          <Route path="/authorization" component={Authorization} />
+          <ProtectedRoute path="/" component={MainPage} />
+        </Switch>
+      </Router>
     </div>
   );
 }
-
-export default () => <Provider><App /></Provider>;
+function mapStateToProps({ user }) {
+  return {
+    user
+  }
+}
+export default connect(mapStateToProps)(App);

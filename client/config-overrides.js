@@ -1,10 +1,6 @@
 const {
     override,
-    addLessLoader,
-    disableChunk,
-    addBabelPlugins,
-    removeModuleScopePlugin,
-    addBabelPresets
+    addBabelPlugins
 } = require("customize-cra");
 
 module.exports = override(
@@ -29,6 +25,10 @@ module.exports = override(
                     {
                         "rootPathSuffix": "./src/utils",
                         "rootPathPrefix": "$utils"
+                    },
+                    {
+                        "rootPathSuffix": "./src",
+                        "rootPathPrefix": "$src"
                     },
                 ]
             }
