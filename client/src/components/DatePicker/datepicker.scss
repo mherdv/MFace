@@ -1,0 +1,62 @@
+@import "src/constants/styles";
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(./iconFont.woff2) format("woff2");
+}
+
+.datepickerConteinr {
+  @import "~react-md/src/scss/react-md";
+
+  @include react-md-everything;
+
+  width: 300px;
+  margin-top: 16px;
+  & > div {
+    width: 100%;
+    & > div {
+      width: 100%;
+      & > div {
+        width: 100%;
+        & > div {
+          width: 100%;
+
+          & > hr[class^="md-divider"] {
+            background: $blue;
+          }
+        }
+      }
+    }
+  }
+  .md-floating-label--floating {
+    transform: translate3d(0, -3px, 0);
+  }
+
+  /* fallback */
+
+  .material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+  }
+}
+.datepickerConteinr .md-text-field--floating-margin {
+  margin-top: 33px;
+}
+@media screen and (max-width: 1024px) {
+  .datepickerConteinr .md-text-field--floating-margin {
+    margin-top: 30px;
+  }
+}

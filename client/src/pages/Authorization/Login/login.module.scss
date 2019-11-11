@@ -1,4 +1,10 @@
+@import "src/constants/styles";
+
 .formContainer {
   display: inline-block;
   margin: auto;
+}
+
+.errorTest {
+  color: $red;
 }

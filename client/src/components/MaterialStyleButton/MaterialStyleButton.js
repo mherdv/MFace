@@ -1,16 +1,17 @@
 import React from 'react';
 import classes from './materialStyleButton.module.scss';
 
-export default function MaterialStyleButton({ onCLick, background, color, value }) {
-    console.log(classes[color])
+export default function MaterialStyleButton({ onClick, background, color, value, type }) {
+
     return (
-        <button className={classes.btn} type="button"><span>{value}</span></button>
+        <button className={classes.btn} type={type} onClick={onClick}><span>{value}</span></button>
     )
 }
 
 MaterialStyleButton.defaultProps = {
-    onCLick: null,
+    onClick: null,
     background: '',
     color: 'blue',
+    type: "button",
     value: 'button'
 }

@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import { connect } from 'react-redux';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import Authorization from '$src/pages/Authorization';
 import ProtectedRoute from '$components/ProtectedRoute';
 import MainPage from '$src/pages/MainPage';
 
 
-function App({ user }) {
+function App() {
 
-  const { token } = user;
   return (
     <div className="App">
 
@@ -23,9 +21,4 @@ function App({ user }) {
     </div>
   );
 }
-function mapStateToProps({ user }) {
-  return {
-    user
-  }
-}
-export default connect(mapStateToProps)(App);
+export default App;

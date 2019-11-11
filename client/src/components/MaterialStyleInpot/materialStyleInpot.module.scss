@@ -3,6 +3,8 @@
 .group {
   position: relative;
   margin-top: 30px;
+
+  width: 300px;
   input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -77,6 +79,10 @@
     left: 0;
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  .errorContainer {
+    color: $red;
   }
 
   /* active state */

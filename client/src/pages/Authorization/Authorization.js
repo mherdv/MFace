@@ -12,7 +12,6 @@ import classes from './authorization.module.scss'
 
 
 function Authorization({ match }) {
-    console.log(classes)
 
     return (
 

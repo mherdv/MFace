@@ -8,6 +8,7 @@ import { setToken, removeToken } from "$utils/token";
 import { USER_LOGOUTH, USER_REGISTRATION } from "$store/types";
 
 
+
 function* watchUserLogin() {
     yield takeEvery(USER_LOGIN, workUserLogin)
 }
@@ -25,16 +26,17 @@ function* workUserLogin(action) {
 
     let { email, password } = action.payload;
 
+
     yield put(loginLoadingAction())
 
     try {
-        const res = yield call(Axios.post, apiPaths.login, { email, password });
+        const res = yield call(Axios.post, apiPaths.login, { email: email.value, password: password.value });
+
         const data = res.data;
         const token = data.token;
         const user = data.user;
 
-        if (!data.status) throw new Error(data.errorText);
-
+        if (!data.status) throw data.errorText;
         setToken(token)
 
         yield put(
@@ -46,9 +48,10 @@ function* workUserLogin(action) {
                 token
             })
         )
-    } catch (error) {
 
-        yield put(loginFeildAction(error))
+    } catch (error) {
+        yield put(loginFeildAction(error));
+
     }
 }
 
@@ -59,21 +62,13 @@ function* workUserLogouth({ payload }) {
 }
 
 function* workUserRegistration({ payload }) {
-
+    let { email, password, gender, dateOfBirthday, surname, name } = payload
     yield put(registrationLoadingAction())
 
     try {
         // get registration datas
 
-        const requestObject = {
-            email: "someEmails@gmail.com",
-            password: "xxassd",
-            gender: 0,
-            dateOfBirthday: "Sun Nov 10 2019 01:09:16 GMT-0800 (Pacific Standard Time)",
-            surname: "Gharibyan",
-            name: "Mher"
-
-        }
+        const requestObject = { email, password, gender, dateOfBirthday, surname, name };
         const res = yield call(Axios.post, apiPaths.registragion, requestObject);
 
         const data = res.data;

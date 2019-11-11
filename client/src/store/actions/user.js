@@ -40,7 +40,7 @@ function logouthAction() {
 function loginFeildAction(payload) {
     return {
         type: USER_LOGIN_FEILD,
-        payload: payload.errorText
+        payload: payload
     }
 }
 
