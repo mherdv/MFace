@@ -1,15 +1,12 @@
 import React from "react";
-import { connect } from 'react-redux';
-
-import { Route, Link, Switch, NavLink } from 'react-router-dom';
-
-import { Redirect } from 'react-router-dom';
-
 import Login from './Login';
 import Registration from './Registration';
-
 import classes from './authorization.module.scss';
+import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+import { Route, Switch, NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Logo } from '$components/svg';
 
 
@@ -50,6 +47,11 @@ function mapStateToProps(store) {
         userToken: store.user.token,
         registration: store.registration
     }
+}
+
+Authorization.propTypes = {
+    match: PropTypes.object.isRequired,
+    userToken: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 
 export default connect(mapStateToProps)(Authorization)

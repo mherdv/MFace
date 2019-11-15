@@ -1,16 +1,16 @@
 import React from 'react';
-import { Formik } from 'formik';
-import { connect } from 'react-redux';
 import * as Yup from 'yup';
-
-import { registrationAction } from '$store/actions/user.js';
 import MaterialStyleInpot from '$components/MaterialStyleInpot';
-
 import classes from './registration.module.scss';
 import MaterialStyleButton from '$components/MaterialStyleButton';
 import DatePicker from '$components/DatePicker';
 import Select from '$components/Select';
 import Preloader from '$components/Preloader';
+import PropTypes from 'prop-types';
+
+import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { registrationAction } from '$store/actions/user.js';
 
 function Registration({ registrationAction, errorText, status, loading }) {
     return (
@@ -94,6 +94,13 @@ function mapStateToProps({ registration }) {
         status, loading, errorText
     }
 }
+Registration.propTypes = {
+    registrationAction: PropTypes.func.isRequired,
+    errorText: PropTypes.string,
+    status: PropTypes.number,
+    loading: PropTypes.bool.isRequired
+}
+
 
 
 export default connect(mapStateToProps, { registrationAction })(Registration);

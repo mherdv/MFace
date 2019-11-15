@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { DatePicker } from 'react-md';
+import PropTypes from 'prop-types';
 
 import './datepicker.scss';
 
@@ -50,6 +51,17 @@ DatePickerField.defaultProps = {
     errors: null,
     onBlur: null,
     minDate: null
+}
+
+
+DatePickerField.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    errors: PropTypes.string,
+    onBlur: PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object
 }
 
 

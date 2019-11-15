@@ -1,8 +1,9 @@
 import React from 'react';
 
 import classes from './select.module.scss';
+import PropTypes from 'prop-types';
 
-export default function Select({ onChange, value, options, errors, selectProps }) {
+function Select({ options, errors, selectProps }) {
 
     return (
         <div className={classes.wrapper}>
@@ -16,7 +17,7 @@ export default function Select({ onChange, value, options, errors, selectProps }
                 </select>
                 <span className={classes["select-highlight"]}></span>
                 <span className={classes["select-bar"]}></span>
-                <label className={classes["select-label"]}>Gender</label>
+                <label className={classes["select-label"]}>{selectProps.name}</label>
             </div>
             <h3>{errors}</h3>
         </div>
@@ -24,9 +25,15 @@ export default function Select({ onChange, value, options, errors, selectProps }
     )
 }
 Select.defaultProps = {
-    onChange: null,
-    value: null,
-    onBlur: null,
+    selectProps: null,
     options: [],
     errors: ''
 }
+Select.propTypes = {
+    selectProps: PropTypes.object,
+    options: PropTypes.array.isRequired,
+    errors: PropTypes.string
+}
+
+
+export default Select;
