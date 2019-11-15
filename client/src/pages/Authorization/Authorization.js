@@ -8,7 +8,9 @@ import { Redirect } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 
-import classes from './authorization.module.scss'
+import classes from './authorization.module.scss';
+
+import { Logo } from '$components/svg';
 
 
 
@@ -17,18 +19,21 @@ function Authorization({ match, userToken }) {
     return (
         <>
             <div className={classes.navbarContainer}>
-                <div> authorization</div>
-                <nav >
-                    <ul className={classes.navbar}>
-                        <li>
-                            <NavLink to={match.path} exact activeClassName={classes.activeLink}>login</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={match.path + "/registration"} exact activeClassName={classes.activeLink}>registration</NavLink>
-                        </li>
+                <div className={classes.headWrapper}>
 
-                    </ul>
-                </nav>
+                    <div className={classes.logoContainer}> <Logo style={{ width: '30px', height: '30px' }} /></div>
+                    <nav >
+                        <ul className={classes.navbar}>
+                            <li>
+                                <NavLink to={match.path} exact activeClassName={classes.activeLink}>login</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={match.path + "/registration"} exact activeClassName={classes.activeLink}>registration</NavLink>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
             </div>
 
             <Switch>

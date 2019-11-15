@@ -1,17 +1,26 @@
-.navbarContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: lightblue;
+@import "src/constants/styles";
 
-  & > div,
-  & > nav {
-    width: 50%;
+.navbarContainer {
+  background: $lightBlue;
+
+  .headWrapper {
+    max-width: $containerMaxWidth;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > div,
+    & > nav {
+      width: 50%;
+    }
   }
+}
+.logoContainer {
+  text-align: left;
+  padding-left: 15px;
 }
 .navbar {
   list-style-type: none;
-  border-left: 1px solid;
   display: flex;
   width: 100%;
   justify-content: flex-end;

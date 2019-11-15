@@ -1,0 +1,12 @@
+@import "src/constants/styles";
+
+.headerContainer {
+  background: $blue;
+  header {
+    display: flex;
+    justify-content: space-between;
+    max-width: $containerMaxWidth;
+    margin: auto;
+    padding: 10px 20px;
+  }
+}
