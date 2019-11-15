@@ -1,4 +1,4 @@
-import { USER_LOGOUTH, USER_LOGIN_FEILD, USER_LOGIN_LOADING, USER_LOGIN_SUCCESS } from '$store/types';
+import { USER_LOGOUTH, USER_LOGIN_FEILD, USER_LOGIN_LOADING, USER_LOGIN_SUCCESS, USER_LOGOUTH_SUCCESS } from '$store/types';
 import jwt_decode from 'jwt-decode';
 import localStorageKeys from '$constants/localStorage';
 import { removeToken } from '$utils/token';
@@ -37,8 +37,15 @@ export default function (state = initialState, action) {
             return { isLoading: false, ...action.payload };
         case USER_LOGIN_FEILD:
             return { isLoading: false, errorText: action.payload };
-        case USER_LOGOUTH:
-            return { ...initialState };
+        case USER_LOGOUTH_SUCCESS:
+            return {
+                isLoading: false,
+                userId: '',
+                email: '',
+                name: '',
+                token: null,
+                errorText: ""
+            };
 
         default:
             return state;

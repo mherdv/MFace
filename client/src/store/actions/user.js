@@ -1,5 +1,6 @@
 import {
-    USER_LOGIN, USER_LOGOUTH,
+    USER_LOGIN,
+    USER_LOGOUTH,
     USER_LOGIN_LOADING,
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FEILD,
@@ -7,7 +8,8 @@ import {
     USER_REGISTRATION_SUCCESS,
     USER_REGISTRATION_FELID,
     USER_REGISTRATION_LOADING,
-    CLEAR_REGISTRATION_STORE
+    CLEAR_REGISTRATION_STORE,
+    USER_LOGOUTH_SUCCESS
 } from "$store/types";
 
 
@@ -35,6 +37,11 @@ function loginSuccessAction(payload) {
 function logouthAction() {
     return {
         type: USER_LOGOUTH
+    }
+}
+function logouthSuccessAction() {
+    return {
+        type: USER_LOGOUTH_SUCCESS
     }
 }
 
@@ -88,6 +95,7 @@ export {
     loginFeildAction,
 
     logouthAction,
+    logouthSuccessAction,
 
     registrationAction,
     registrationSuccessAction,
