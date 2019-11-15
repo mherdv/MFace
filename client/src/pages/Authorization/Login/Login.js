@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MaterialStyleInpot from '$components/MaterialStyleInpot';
 import classes from './login.module.scss';
 import MaterialStyleButton from '$components/MaterialStyleButton';
@@ -6,15 +6,14 @@ import useLoginForm from './useLoginForm';
 import { connect } from 'react-redux';
 import { loginAction } from "$store/actions/user";
 
-import { Redirect } from 'react-router-dom';
 import Preloader from '$components/Preloader';
 
 
-function Login({ loginAction, isLoading, errorText, userToken }) {
+function Login({ loginAction, isLoading, errorText }) {
 
     const { onChange, onSubmit, values, errors, onBlur } = useLoginForm({ onSubmit: loginAction });
 
-    // if (userToken) return <Redirect to={'/'} />
+
     return (
 
         <div className={classes.formContainer}>
@@ -50,8 +49,7 @@ function Login({ loginAction, isLoading, errorText, userToken }) {
 function mapStateToProps(store) {
     return {
         isLoading: store.user.isLoading,
-        errorText: store.user.errorText,
-        userToken: store.user.token
+        errorText: store.user.errorText
     }
 }
 

@@ -6,12 +6,21 @@
   font-weight: 400;
   src: url(./iconFont.woff2) format("woff2");
 }
+.datepickerConteinr .material-icons.md-icon {
+  display: none;
+}
 
 .datepickerConteinr {
   @import "~react-md/src/scss/react-md";
 
   @include react-md-everything;
 
+  h3 {
+    color: $red;
+    width: 100%;
+    white-space: normal;
+    font-weight: 600;
+  }
   width: 300px;
   margin-top: 16px;
   & > div {
@@ -30,10 +39,26 @@
       }
     }
   }
-  .md-floating-label--floating {
-    transform: translate3d(0, -3px, 0);
+  .md-floating-label--floating,
+  .md-floating-label--icon-offset {
+    left: 6px;
+    font-size: $labelFont;
+    top: -7px;
   }
-
+  .md-text-field--floating-margin {
+    padding-left: 6px;
+  }
+  .md-text-field-icon + .md-text-field-divider-container {
+    margin-left: 0;
+  }
+  .md-floating-label.md-floating-label--floating {
+    font-size: $labelFontSmall;
+    color: $lightBlue;
+    transform: translate3d(0, 0px, 0);
+  }
+  .md-picker--inline-icon {
+    left: 0;
+  }
   /* fallback */
 
   .material-icons {

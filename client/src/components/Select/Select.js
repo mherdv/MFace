@@ -2,14 +2,13 @@ import React from 'react';
 
 import classes from './select.module.scss';
 
-export default function Select({ onChange, value, options }) {
+export default function Select({ onChange, value, options, errors, selectProps }) {
+
     return (
         <div className={classes.wrapper}>
-            <div className={classes.select} onChange={onChange} value={value}>
-                <select className={classes["select-text"]} required>
-                    <option value=""></option>
+            <div className={classes.select} >
+                <select className={classes["select-text"]} required {...selectProps}>
                     {options.map((option, index) => {
-                        console.log(option)
                         return <option value={option.value} key={"option__" + option.name}> {option.name}</option>
                     })}
 
@@ -19,7 +18,7 @@ export default function Select({ onChange, value, options }) {
                 <span className={classes["select-bar"]}></span>
                 <label className={classes["select-label"]}>Gender</label>
             </div>
-
+            <h3>{errors}</h3>
         </div>
 
     )
@@ -27,5 +26,7 @@ export default function Select({ onChange, value, options }) {
 Select.defaultProps = {
     onChange: null,
     value: null,
-    options: []
+    onBlur: null,
+    options: [],
+    errors: ''
 }

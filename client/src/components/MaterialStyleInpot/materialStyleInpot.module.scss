@@ -6,7 +6,7 @@
 
   width: 300px;
   input {
-    font-size: 18px;
+    font-size: $labelFont;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 300px;
@@ -20,7 +20,7 @@
   /* LABEL ======================================= */
   label {
     color: #999;
-    font-size: 18px;
+    font-size: $labelFont;
     font-weight: normal;
     position: absolute;
     pointer-events: none;

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { DatePicker } from 'react-md';
 
 import './datepicker.scss';
 
-function DatePickerField({ name, value, onChange, errors, onBlur }) {
+function DatePickerField({ name, value, onChange, errors, onBlur, minDate, maxDate }) {
+
+    const [isTouched, setIsTouched] = useState(false);
+
     return (
         <div className={'datepickerConteinr registrationDatepicker'}>
             <DatePicker
@@ -13,6 +16,8 @@ function DatePickerField({ name, value, onChange, errors, onBlur }) {
                 inline
                 fullWidth={false}
                 value={value && new Date(value)}
+                minDate={minDate || null}
+                maxDate={maxDate || null}
 
                 onChange={(value, fullTime) => {
                     let event = {
@@ -25,7 +30,14 @@ function DatePickerField({ name, value, onChange, errors, onBlur }) {
 
                     onChange(event)
                 }}
+
+                onVisibilityChange={(isOpen, event) => {
+                    onBlur();
+                    if (!isOpen && !isTouched) setIsTouched(true);
+
+                }}
             />
+            {errors && isTouched ? <h3>{errors}</h3> : null}
         </div>
     );
 }
@@ -36,7 +48,8 @@ DatePickerField.defaultProps = {
     value: null,
     onChange: null,
     errors: null,
-    onBlur: null
+    onBlur: null,
+    minDate: null
 }
 
 

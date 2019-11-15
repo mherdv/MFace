@@ -6,7 +6,8 @@ import {
     USER_REGISTRATION,
     USER_REGISTRATION_SUCCESS,
     USER_REGISTRATION_FELID,
-    USER_REGISTRATION_LOADING
+    USER_REGISTRATION_LOADING,
+    CLEAR_REGISTRATION_STORE
 } from "$store/types";
 
 
@@ -72,6 +73,13 @@ function registrationFeildAction(payload) {
     }
 }
 
+function clearRegistrationStoreAction() {
+    return {
+        type: CLEAR_REGISTRATION_STORE
+    }
+}
+
+
 
 export {
     loginAction,
@@ -84,7 +92,8 @@ export {
     registrationAction,
     registrationSuccessAction,
     registrationFeildAction,
-    registrationLoadingAction
+    registrationLoadingAction,
+    clearRegistrationStoreAction
 
 
 }

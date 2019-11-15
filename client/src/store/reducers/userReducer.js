@@ -39,6 +39,7 @@ export default function (state = initialState, action) {
             return { isLoading: false, errorText: action.payload };
         case USER_LOGOUTH:
             return { ...initialState };
+
         default:
             return state;
     }

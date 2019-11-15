@@ -3,7 +3,7 @@ import { USER_LOGIN } from "$store/types/";
 
 import apiPaths from '$constants/apiPaths';
 import Axios from "axios";
-import { loginSuccessAction, loginFeildAction, logouthAction, loginLoadingAction, registrationLoadingAction, registrationFeildAction, registrationSuccessAction } from "../actions/user";
+import { loginSuccessAction, loginFeildAction, logouthAction, loginLoadingAction, registrationLoadingAction, registrationFeildAction, registrationSuccessAction, clearRegistrationStoreAction } from "../actions/user";
 import { setToken, removeToken } from "$utils/token";
 import { USER_LOGOUTH, USER_REGISTRATION } from "$store/types";
 
@@ -77,10 +77,20 @@ function* workUserRegistration({ payload }) {
         yield put(registrationSuccessAction({
             status: 1
         }))
+        yield put(clearRegistrationStoreAction())
 
 
-    } catch (error) {
-        yield put(registrationFeildAction({ error }))
+    } catch (errors) {
+
+        let errorText = '';
+
+        for (let key in errors) {
+
+            errorText += errors[key].message;
+        }
+
+
+        yield put(registrationFeildAction(errorText))
     }
 
 }

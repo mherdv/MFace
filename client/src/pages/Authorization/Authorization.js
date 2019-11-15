@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { loginAction, registrationAction } from "$store/actions/user";
 
 import { Route, Link, Switch, NavLink } from 'react-router-dom';
+
+import { Redirect } from 'react-router-dom';
 
 import Login from './Login';
 import Registration from './Registration';
@@ -11,18 +12,12 @@ import classes from './authorization.module.scss'
 
 
 
-function Authorization({ match }) {
-
+function Authorization({ match, userToken }) {
+    if (userToken) return <Redirect to={'/'} />
     return (
-
-        //login  registration navbar
-
         <>
             <div className={classes.navbarContainer}>
-
                 <div> authorization</div>
-
-
                 <nav >
                     <ul className={classes.navbar}>
                         <li>
@@ -47,9 +42,9 @@ function Authorization({ match }) {
 }
 function mapStateToProps(store) {
     return {
-        user: store.user,
+        userToken: store.user.token,
         registration: store.registration
     }
 }
 
-export default connect(mapStateToProps, { loginAction, registrationAction })(Authorization)
+export default connect(mapStateToProps)(Authorization)

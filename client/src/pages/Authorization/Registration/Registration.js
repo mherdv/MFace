@@ -10,15 +10,9 @@ import classes from './registration.module.scss';
 import MaterialStyleButton from '$components/MaterialStyleButton';
 import DatePicker from '$components/DatePicker';
 import Select from '$components/Select';
-function Registration() {
-    // TODO: use formik
+import Preloader from '$components/Preloader';
 
-    // TODO: select validation
-    // TODO: date validation 
-
-    // TODO: clearing code 
-
-    // TODO: set min and max dates
+function Registration({ registrationAction, errorText, status, loading }) {
     return (
 
         <Formik
@@ -34,21 +28,23 @@ function Registration() {
                     .required('Required'),
                 password: Yup.string()
                     .min(5, 'password is too short mast be minimul 5 simbols').required('Required'),
-                dateOfBirthday: Yup.date('invalid date passing').required("Required").default(null),
+                dateOfBirthday: Yup.date('invalid date passing').required("Required"),
+                gender: Yup.number('error').required('Required')
 
 
             })}
 
-            onSubmit={(values, { setSubmitting }) => {
-
+            onSubmit={async (values) => {
+                registrationAction(values);
             }}
 
         >
             {(formik) => {
                 return (
-                    <form onSubmit={formik.handleSubmit}>
-
+                    <form onSubmit={formik.handleSubmit} className={classes.form}>
+                        <h3>{errorText && !status ? errorText : null}</h3>
                         <div className={classes.container}>
+
                             <MaterialStyleInpot {...formik.getFieldProps('name')}
 
                                 errors={formik.touched.name && formik.errors.name}
@@ -64,20 +60,27 @@ function Registration() {
                                 errors={formik.touched.password && formik.errors.password}
                             />
 
-                           
-
                             <DatePicker
-
                                 {...formik.getFieldProps('dateOfBirthday')}
-
-                                errors={formik.errors.dateOfBirthday}
-
+                                errors={formik.errors.dateOfBirthday && "Required"}
+                                onBlur={() => {
+                                    let { onBlur, name } = formik.getFieldProps('dateOfBirthday')
+                                    setTimeout(() => { onBlur({ target: { name } }); }, 0)
+                                }}
+                                minDate={new Date('1920', '03' - 1, '11')}
+                                maxDate={new Date((new Date().getFullYear() - 5) + '', '1', '0')}
                             />
-                             <Select options={[{ name: "mal", value: "0" }, { name: "femall", value: "1" }]} />
+
+                            <Select
+                                selectProps={formik.getFieldProps('gender')}
+                                options={[{ name: "", value: '' }, { name: "mal", value: 1 }, { name: "femall", value: 2 }]}
+                                errors={formik.touched.gender && !formik.values.gender && "Required"}
+                            />
 
 
                         </div>
-                        <MaterialStyleButton type="submit" />
+                        {loading ? <Preloader /> :
+                            <MaterialStyleButton type="submit" />}
 
                     </form>)
             }}
@@ -86,7 +89,7 @@ function Registration() {
 }
 
 function mapStateToProps({ registration }) {
-    let { status, loading, errorText } = registration
+    let { status, loading, errorText } = registration;
     return {
         status, loading, errorText
     }

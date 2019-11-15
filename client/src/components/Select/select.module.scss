@@ -3,6 +3,10 @@
 .wrapper {
   position: relative;
   width: 300px;
+  h3 {
+    color: $red;
+    margin-top: 3px;
+  }
 }
 
 .select {
@@ -18,10 +22,11 @@
   background-color: transparent;
   width: 300px;
   padding: 10px 10px 10px 0;
-  font-size: 18px;
+  font-size: $labelFont;
   border-radius: 0;
   border: none;
   border-bottom: 1px solid $blue;
+  padding-left: 6px;
 }
 
 /* Remove focus */
@@ -38,7 +43,7 @@
 
 .select:after {
   position: absolute;
-  top: 18px;
+  top: $labelFont;
   right: 10px;
   /* Styling the down arrow */
   width: 0;
@@ -54,7 +59,7 @@
 /* LABEL ======================================= */
 .select-label {
   color: $gray;
-  font-size: 18px;
+  font-size: $labelFont;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -66,10 +71,10 @@
 /* active state */
 .select-text:focus ~ .select-label,
 .select-text:valid ~ .select-label {
-  color: $darkPink;
   top: -20px;
   transition: 0.2s ease all;
   font-size: 14px;
+  color: $lightBlue;
 }
 
 /* BOTTOM BARS ================================= */
