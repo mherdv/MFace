@@ -17,6 +17,9 @@
             "$store": [
                 "./src/store/*"
             ],
+            "$pages": [
+                "./src/pages/*"
+            ],
             "$src": [
                 "./src/*"
             ]

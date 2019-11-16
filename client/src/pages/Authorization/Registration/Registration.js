@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import MaterialStyleInpot from '$components/MaterialStyleInpot';
 import classes from './registration.module.scss';
@@ -12,8 +12,16 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { registrationAction } from '$store/actions/user.js';
 
-function Registration({ registrationAction, errorText, status, loading }) {
-    return (
+
+
+function Registration({
+    registrationAction,
+    errorText,
+    status,
+    loading
+}) {
+
+    return (!status ?
 
         <Formik
             initialValues={{ email: '', password: '', gender: 0, dateOfBirthday: null, surname: '', name: '' }}
@@ -34,12 +42,14 @@ function Registration({ registrationAction, errorText, status, loading }) {
 
             })}
 
-            onSubmit={async (values) => {
+            onSubmit={(values) => {
                 registrationAction(values);
+
             }}
 
         >
             {(formik) => {
+
                 return (
                     <form onSubmit={formik.handleSubmit} className={classes.form}>
                         <h3>{errorText && !status ? errorText : null}</h3>
@@ -79,12 +89,13 @@ function Registration({ registrationAction, errorText, status, loading }) {
 
 
                         </div>
-                        {loading ? <Preloader /> :
+                        {loading ?
+                            <Preloader /> :
                             <MaterialStyleButton type="submit" />}
 
                     </form>)
             }}
-        </Formik >
+        </Formik > : null
     )
 }
 

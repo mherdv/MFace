@@ -3,22 +3,27 @@ import Header from './Header';
 import ProtectedRoute from '$components/ProtectedRoute';
 
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import Home from '$pages/Home';
+import InitialPage from '$pages/InitialPage';
 
 
 
 function MainPage() {
+    console.log(InitialPage)
     return (
         <div>
             <Header />
 
             <Switch>
-                <ProtectedRoute path={"/home"} component={() => <div>some component</div>} />
+
+                <ProtectedRoute path={"/"} exact component={InitialPage} />
+                <ProtectedRoute path={"/home"} exact component={Home} />
             </Switch>
-            main page <br />
+            {/* main page <br />
             header <br />
             navbar <br />
-            posts <br />
+            posts <br /> */}
         </div>
     )
 }

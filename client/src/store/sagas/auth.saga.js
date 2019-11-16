@@ -3,7 +3,16 @@ import { USER_LOGIN } from "$store/types/";
 
 import apiPaths from '$constants/apiPaths';
 import Axios from "axios";
-import { loginSuccessAction, loginFeildAction, logouthAction, loginLoadingAction, registrationLoadingAction, registrationFeildAction, registrationSuccessAction, clearRegistrationStoreAction, logouthSuccessAction } from "../actions/user";
+import {
+    loginSuccessAction,
+    loginFeildAction,
+    loginLoadingAction,
+    registrationLoadingAction,
+    registrationFeildAction,
+    registrationSuccessAction,
+    logouthSuccessAction,
+    clearRegistrationStoreAction
+} from "../actions/user";
 import { setToken, removeToken } from "$utils/token";
 import { USER_LOGOUTH, USER_REGISTRATION } from "$store/types";
 

@@ -19,6 +19,10 @@ module.exports = override(
                         "rootPathPrefix": "$components"
                     },
                     {
+                        "rootPathSuffix": "./src/pages",
+                        "rootPathPrefix": "$pages"
+                    },
+                    {
                         "rootPathSuffix": "./src/store",
                         "rootPathPrefix": "$store"
                     },

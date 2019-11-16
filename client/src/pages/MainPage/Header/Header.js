@@ -18,11 +18,13 @@ function Header({ logouthAction }) {
                 <div>
                     <ul>
                         <li>
-                            <NavLink to={'/'} exact activeClassName={classes.active} ><Logo style={{ width: '30px', height: '30px' }} /></NavLink>
+                            <NavLink exact to={'/'} activeClassName={classes.active} >
+                                <Logo style={{ width: '30px', height: '30px' }} />
+                            </NavLink>
 
                         </li>
                         <li>
-                            <NavLink to={'/home'} exact activeClassName={classes.active} >home</NavLink>
+                            <NavLink exact to={'/home'} activeClassName={classes.active} >home</NavLink>
                         </li>
                         <li>
                             {/* search user  */}
@@ -35,7 +37,7 @@ function Header({ logouthAction }) {
                 <div>
                     <ul>
                         <li>
-                            <NavLink to={'/'} exact onClick={() => logouthAction()}>log ouths</NavLink>
+                            <NavLink to={'/'} exact onClick={() => logouthAction()}>logouth</NavLink>
                         </li>
                     </ul>
                 </div>

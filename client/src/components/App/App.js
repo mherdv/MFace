@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
-import Authorization from '$src/pages/Authorization';
+import Authorization from '$pages/Authorization';
 import ProtectedRoute from '$components/ProtectedRoute';
-import MainPage from '$src/pages/MainPage';
+import MainPage from '$pages/MainPage';
 
 
 function App() {
