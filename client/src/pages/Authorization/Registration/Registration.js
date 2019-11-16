@@ -21,7 +21,7 @@ function Registration({
     loading
 }) {
 
-    return (!status ?
+    return (!status || errorText ?
 
         <Formik
             initialValues={{ email: '', password: '', gender: 0, dateOfBirthday: null, surname: '', name: '' }}
