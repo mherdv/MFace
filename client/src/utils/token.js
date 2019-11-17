@@ -1,22 +1,15 @@
-
-import localStorageConstants from '$constants/localStorage'
-
+import localStorageConstants from "$constants/localStorage";
 
 function setToken(token) {
-    window.localStorage.setItem(localStorageConstants.authHeaderKey, token);
+  window.localStorage.setItem(localStorageConstants.authHeaderKey, token);
 }
 
 function removeToken() {
-    window.localStorage.removeItem(localStorageConstants.authHeaderKey);
+  window.localStorage.removeItem(localStorageConstants.authHeaderKey);
 }
 
 function getToken() {
-    return window.localStorage.getItem(localStorageConstants.authHeaderKey);
+  return window.localStorage.getItem(localStorageConstants.authHeaderKey);
 }
 
-
-export {
-    setToken,
-    removeToken,
-    getToken
-}
+export { setToken, removeToken, getToken };

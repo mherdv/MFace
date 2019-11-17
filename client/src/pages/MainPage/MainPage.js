@@ -1,37 +1,29 @@
-import React from 'react';
-import Header from './Header';
-import ProtectedRoute from '$components/ProtectedRoute';
+import React from "react";
+import { connect } from "react-redux";
+import { Switch } from "react-router-dom";
+import Header from "./Header";
+import ProtectedRoute from "$components/ProtectedRoute";
 
-import { connect } from 'react-redux';
-import { Switch } from 'react-router-dom';
-import Home from '$pages/Home';
-import InitialPage from '$pages/InitialPage';
-
-
+import Home from "$pages/Home";
+import InitialPage from "$pages/InitialPage";
 
 function MainPage() {
-    console.log(InitialPage)
-    return (
-        <div>
-            <Header />
+  return (
+    <div>
+      <Header />
 
-            <Switch>
-
-                <ProtectedRoute path={"/"} exact component={InitialPage} />
-                <ProtectedRoute path={"/home"} exact component={Home} />
-            </Switch>
-            {/* main page <br />
+      <Switch>
+        <ProtectedRoute path="/" exact component={InitialPage} />
+        <ProtectedRoute path="/home" exact component={Home} />
+      </Switch>
+      {/* main page <br />
             header <br />
             navbar <br />
             posts <br /> */}
-        </div>
-    )
+    </div>
+  );
 }
 function mapStateToProps(store) {
-    return {
-
-    }
+  return {};
 }
-export default connect(mapStateToProps)(MainPage)
-
-
+export default connect(mapStateToProps)(MainPage);

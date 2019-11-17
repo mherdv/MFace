@@ -1,112 +1,107 @@
+import Axios from "axios";
 import { takeEvery, call, put } from "@redux-saga/core/effects";
 import { USER_LOGIN } from "$store/types/";
 
-import apiPaths from '$constants/apiPaths';
-import Axios from "axios";
+import apiPaths from "$constants/apiPaths";
 import {
-    loginSuccessAction,
-    loginFeildAction,
-    loginLoadingAction,
-    registrationLoadingAction,
-    registrationFeildAction,
-    registrationSuccessAction,
-    logouthSuccessAction,
-    clearRegistrationStoreAction
+  loginSuccessAction,
+  loginFeildAction,
+  loginLoadingAction,
+  registrationLoadingAction,
+  registrationFeildAction,
+  registrationSuccessAction,
+  logouthSuccessAction,
+  clearRegistrationStoreAction
 } from "../actions/user";
 import { setToken, removeToken } from "$utils/token";
 import { USER_LOGOUTH, USER_REGISTRATION } from "$store/types";
 
-
-
-function* watchUserLogin() {
-    yield takeEvery(USER_LOGIN, workUserLogin)
-}
-
-function* watchUserLogouth() {
-    yield takeEvery(USER_LOGOUTH, workUserLogouth)
-}
-
-function* watchUserRegistration() {
-    yield takeEvery(USER_REGISTRATION, workUserRegistration)
-}
-
-
 function* workUserLogin(action) {
+  const { email, password } = action.payload;
 
-    let { email, password } = action.payload;
+  yield put(loginLoadingAction());
 
+  try {
+    const res = yield call(Axios.post, apiPaths.login, {
+      email: email.value,
+      password: password.value
+    });
 
-    yield put(loginLoadingAction())
+    const { data } = res;
+    const { token } = data;
+    const { user } = data;
 
-    try {
-        const res = yield call(Axios.post, apiPaths.login, { email: email.value, password: password.value });
+    if (!data.status) throw data.errorText;
+    setToken(token);
 
-        const data = res.data;
-        const token = data.token;
-        const user = data.user;
+    const { name, surname, _id: userId } = user;
 
-        if (!data.status) throw data.errorText;
-        setToken(token)
-
-        yield put(
-            loginSuccessAction({
-                email: user.email,
-                name: user.name,
-                surname: user.surname,
-                userId: user._id,
-                token
-            })
-        )
-
-    } catch (error) {
-        yield put(loginFeildAction(error));
-
-    }
+    yield put(
+      loginSuccessAction({
+        email: user.email,
+        name,
+        surname,
+        userId,
+        token
+      })
+    );
+  } catch (error) {
+    yield put(loginFeildAction(error));
+  }
 }
 
-
-function* workUserLogouth({ payload }) {
-    removeToken();
-    yield put(logouthSuccessAction());
+function* workUserLogouth(/* { payload } */) {
+  removeToken();
+  yield put(logouthSuccessAction());
 }
 
 function* workUserRegistration({ payload }) {
-    let { email, password, gender, dateOfBirthday, surname, name } = payload
-    yield put(registrationLoadingAction())
+  const { email, password, gender, dateOfBirthday, surname, name } = payload;
+  yield put(registrationLoadingAction());
 
-    try {
-        // get registration datas
+  try {
+    // get registration datas
 
-        const requestObject = { email, password, gender, dateOfBirthday, surname, name };
-        const res = yield call(Axios.post, apiPaths.registragion, requestObject);
+    const requestObject = {
+      email,
+      password,
+      gender,
+      dateOfBirthday,
+      surname,
+      name
+    };
+    const res = yield call(Axios.post, apiPaths.registragion, requestObject);
 
-        const data = res.data;
-        if (data.status !== 200) throw new Object(data.error);
+    const { data } = res;
+    if (data.status !== 200) throw data.error;
 
-        yield put(registrationSuccessAction({
-            status: 1
-        }))
-        yield put(clearRegistrationStoreAction())
+    yield put(
+      registrationSuccessAction({
+        status: 1
+      })
+    );
+    yield put(clearRegistrationStoreAction());
+  } catch (errors) {
+    let errorText = "";
 
+    Object.keys(errors).forEach(key => {
+      errorText += errors[key].message;
+    });
 
-    } catch (errors) {
-
-        let errorText = '';
-
-        for (let key in errors) {
-
-            errorText += errors[key].message;
-        }
-
-
-        yield put(registrationFeildAction(errorText))
-    }
-
+    yield put(registrationFeildAction(errorText));
+  }
 }
 
-export {
-    watchUserLogin,
-    watchUserLogouth,
-    watchUserRegistration
-
+function* watchUserLogin() {
+  yield takeEvery(USER_LOGIN, workUserLogin);
 }
+
+function* watchUserLogouth() {
+  yield takeEvery(USER_LOGOUTH, workUserLogouth);
+}
+
+function* watchUserRegistration() {
+  yield takeEvery(USER_REGISTRATION, workUserRegistration);
+}
+
+export { watchUserLogin, watchUserLogouth, watchUserRegistration };

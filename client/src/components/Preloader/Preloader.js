@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import classes from './preloader.module.scss';
+import classes from "./preloader.module.scss";
 
 export default function Preloader() {
-    return (
-        <div className={classes['lds-ripple']}><div></div><div></div></div>
-    )
+  return (
+    <div className={classes["lds-ripple"]}>
+      <div />
+      <div />
+    </div>
+  );
 }
