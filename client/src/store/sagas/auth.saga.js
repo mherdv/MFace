@@ -1,6 +1,5 @@
 import Axios from "axios";
 import { takeEvery, call, put } from "@redux-saga/core/effects";
-import { USER_LOGIN } from "$store/types/";
 
 import apiPaths from "$constants/apiPaths";
 import {
@@ -14,7 +13,7 @@ import {
   clearRegistrationStoreAction
 } from "../actions/user";
 import { setToken, removeToken } from "$utils/token";
-import { USER_LOGOUTH, USER_REGISTRATION } from "$store/types";
+import { USER_LOGOUTH, USER_REGISTRATION, USER_LOGIN } from "$store/types";
 
 function* workUserLogin(action) {
   const { email, password } = action.payload;
@@ -28,8 +27,7 @@ function* workUserLogin(action) {
     });
 
     const { data } = res;
-    const { token } = data;
-    const { user } = data;
+    const { token, user } = data;
 
     if (!data.status) throw data.errorText;
     setToken(token);

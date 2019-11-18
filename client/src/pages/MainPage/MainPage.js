@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 import Header from "./Header";
 import ProtectedRoute from "$components/ProtectedRoute";
 
 import Home from "$pages/Home";
 import InitialPage from "$pages/InitialPage";
 
-function MainPage() {
+
+function MainPage({ userToken }) {
+  if (!userToken) return <Redirect to="/" />;
   return (
     <div>
       <Header />
@@ -24,6 +27,16 @@ function MainPage() {
   );
 }
 function mapStateToProps(store) {
-  return {};
+  return {
+    userToken: store.user.token
+  };
 }
+
+MainPage.defaultProps = {
+  userToken: null
+};
+
+MainPage.propTypes = {
+  userToken: PropTypes.string
+};
 export default connect(mapStateToProps)(MainPage);

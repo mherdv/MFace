@@ -7,8 +7,24 @@ import classes from "./header.module.scss";
 import { Logo } from "$components/svg";
 
 import { logouthAction as _logouthAction } from "$store/actions/user";
+import SearchInput from "$components/SearchInput";
+import useSearchUser from "./useSearchUser";
+import {
+  userSearchAction as _userSearchAction,
+  userSearchClearAction as _userSearchClearAction
+} from "$store/actions/userSearch";
+import SearchUsers from "./SearchUsers";
 
-function Header({ logouthAction }) {
+function Header({
+  logouthAction,
+  userSearchAction,
+  userSearch,
+  userSearchClearAction
+}) {
+  const { inputValue, onChange } = useSearchUser({
+    userSearchAction,
+    userSearchClearAction
+  });
   return (
     <div className={classes.headerContainer}>
       <header>
@@ -26,7 +42,11 @@ function Header({ logouthAction }) {
             </li>
             <li>
               {/* search user  */}
-              <input type="text" />
+              <SearchInput
+                value={inputValue}
+                onChange={onChange}
+                items={<SearchUsers users={userSearch.users} />}
+              />
             </li>
           </ul>
         </div>
@@ -44,14 +64,19 @@ function Header({ logouthAction }) {
     </div>
   );
 }
-function mapStateToProps(/* store */) {
-  return {};
+function mapStateToProps({ userSearch }) {
+  return { userSearch };
 }
 
 Header.propTypes = {
-  logouthAction: PropTypes.func.isRequired
+  logouthAction: PropTypes.func.isRequired,
+  userSearchAction: PropTypes.func.isRequired,
+  userSearchClearAction: PropTypes.func.isRequired,
+  userSearch: PropTypes.instanceOf(Object).isRequired
 };
-
-export default connect(mapStateToProps, { logouthAction: _logouthAction })(
-  Header
-);
+// userSearchAction({ fullName: "as" })
+export default connect(mapStateToProps, {
+  logouthAction: _logouthAction,
+  userSearchAction: _userSearchAction,
+  userSearchClearAction: _userSearchClearAction
+})(Header);

@@ -5,10 +5,10 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGOUTH_SUCCESS
 } from "$store/types";
-import localStorageKeys from "$constants/localStorage";
 import { removeToken } from "$utils/token";
+import { getToken } from "$utils/token";
 
-const userToken = localStorage.getItem(localStorageKeys.authHeaderKey);
+const userToken = getToken();
 
 const initialState = {
   isLoading: false,
@@ -20,17 +20,17 @@ const initialState = {
 };
 
 if (userToken) {
-  const encodedJwt = jwtDecode(userToken);
+  const { exp, id, email, name } = jwtDecode(userToken);
   const now = new Date();
-  const finalDate = encodedJwt.exp * 1000;
+  const finalDate = exp * 1000;
 
   if (now > finalDate) {
     initialState.token = null;
     removeToken();
   } else {
-    initialState.userId = encodedJwt.id;
-    initialState.email = encodedJwt.email;
-    initialState.name = encodedJwt.name;
+    initialState.userId = id;
+    initialState.email = email;
+    initialState.name = name;
   }
 }
 

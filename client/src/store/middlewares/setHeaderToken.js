@@ -1,6 +1,8 @@
+import { getTokenWidthBearear } from "$utils/token";
+
 // login heaader adding
 const setHeader = store => next => action => {
-  const { token } = store.getState().user;
+  const token = getTokenWidthBearear();
   if (typeof action === "function") {
     next(action);
     return;

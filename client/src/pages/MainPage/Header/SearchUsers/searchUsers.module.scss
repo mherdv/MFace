@@ -1,0 +1,25 @@
+@import "src/constants/styles";
+
+.wrapper {
+  position: relative;
+  height: 0;
+  width: 0;
+  background: #fff;
+  ul {
+    max-height: 200px;
+    overflow: auto;
+    background: #fff;
+    display: inline-block;
+  }
+  li {
+    display: inline-block;
+    width: 100%;
+    list-style: none;
+    min-width: 200px;
+    cursor: pointer;
+    &:hover {
+      background: $blue;
+      color: #fff;
+    }
+  }
+}
