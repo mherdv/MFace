@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios from "$utils/axios";
 import { takeEvery, call, put } from "@redux-saga/core/effects";
 
 import apiPaths from "$constants/apiPaths";

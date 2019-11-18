@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios from "$utils/axios";
 import {
   /* takeEvery, */
   call,
@@ -9,10 +9,8 @@ import { SEARCH_USER } from "$store/types";
 import apiPaths from "$constants/apiPaths";
 import {
   userSearchSuccessAction,
-  userSearchLoadingAction,
-  userSearchErrorAction
+  userSearchLoadingAction
 } from "$store/actions/userSearch";
-import { logouthAction } from "$store/actions/user";
 
 function* workUserSearch(action) {
   yield put(userSearchLoadingAction());
@@ -27,14 +25,8 @@ function* workUserSearch(action) {
     });
     const { data } = res;
 
-    if (!data.users) throw data;
-
     yield put(userSearchSuccessAction(data.users));
-  } catch ({ errorText, status }) {
-    if (status === 401) {
-      yield put(logouthAction());
-    } else yield put(userSearchErrorAction({ errorText }));
-  }
+  } catch ({ response }) {}
 }
 
 function* watchUserSearch() {

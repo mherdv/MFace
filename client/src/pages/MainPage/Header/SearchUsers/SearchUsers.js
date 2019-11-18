@@ -7,7 +7,7 @@ function SearchUsers({ users }) {
     <div className={classes.wrapper}>
       <ul>
         {users.map(item => (
-          <li>{item.fullName}</li>
+          <li key={item._id}>{item.fullName}</li>
         ))}
       </ul>
     </div>

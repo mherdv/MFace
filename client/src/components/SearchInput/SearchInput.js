@@ -21,7 +21,7 @@ SearchInput.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  items: PropTypes.instanceOf(Array)
+  items: PropTypes.instanceOf(Object)
 };
 
 export default SearchInput;

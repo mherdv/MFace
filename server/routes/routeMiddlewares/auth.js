@@ -32,7 +32,7 @@ function authorizeMiddleWear(req, res, next) {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    res.send({ errorText: "login first ", status: 401 });
+    res.send(401, { errorText: "login first " });
     return;
   }
   // checking token  checking if token is valid
@@ -43,7 +43,7 @@ function authorizeMiddleWear(req, res, next) {
     return;
   }
 
-  res.send({ errorText: "login first ", status: 401 });
+  res.send(401, { errorText: "login first " });
 }
 
 module.exports = authorizeMiddleWear;
