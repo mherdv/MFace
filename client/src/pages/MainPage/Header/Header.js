@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -21,10 +21,26 @@ function Header({
   userSearch,
   userSearchClearAction
 }) {
-  const { inputValue, onChange } = useSearchUser({
+  const { inputValue, onChange, onFocus, onUserClick } = useSearchUser({
     userSearchAction,
     userSearchClearAction
   });
+
+  const inputContainerRef = useRef(null);
+
+  useEffect(() => {
+    const closeListClick = event => {
+      if (!inputContainerRef.current.contains(event.target.parentNode))
+        userSearchClearAction();
+    };
+
+    document.addEventListener("click", closeListClick);
+    return () => {
+      document.removeEventListener("click", closeListClick);
+      userSearchClearAction();
+    };
+  }, []);
+
   return (
     <div className={classes.headerContainer}>
       <header>
@@ -40,12 +56,18 @@ function Header({
                 home
               </NavLink>
             </li>
-            <li>
+            <li
+              className={classes.searchInputContainer}
+              ref={inputContainerRef}
+            >
               {/* search user  */}
               <SearchInput
                 value={inputValue}
                 onChange={onChange}
-                items={<SearchUsers users={userSearch.users} />}
+                onFocus={onFocus}
+                items={
+                  <SearchUsers users={userSearch.users} onClick={onUserClick} />
+                }
               />
             </li>
           </ul>
@@ -53,7 +75,6 @@ function Header({
         <div>
           <ul>
             <li>
-              {/* FIXME: logouth is incorrect ? */}
               <NavLink to="/" exact onClick={() => logouthAction()}>
                 logouth
               </NavLink>

@@ -3,6 +3,9 @@
 .headerContainer {
   background: $blue;
   height: 41px;
+  .searchInputContainer {
+    display: initial;
+  }
 
   header {
     display: flex;

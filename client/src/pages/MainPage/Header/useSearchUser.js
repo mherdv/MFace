@@ -7,14 +7,17 @@ export default function useSearchUser({
 }) {
   const [value, setValue] = useState("");
 
-  //   const [users, setUsers] = useState([]);
-
   function onChange(event) {
     const newValue = event.target.value;
     setValue(newValue);
     if (newValue.trim()) userSearchAction({ fullName: newValue.trim() });
     else userSearchClearAction();
   }
+  function onFocus(event) {
+    const newValue = event.target.value;
+    if (newValue.trim()) userSearchAction({ fullName: newValue.trim() });
+  }
+  function onUserClick() {}
 
-  return { inputValue: value, onChange };
+  return { inputValue: value, onChange, onFocus, onUserClick };
 }
