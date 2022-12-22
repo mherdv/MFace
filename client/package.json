@@ -9,7 +9,7 @@
     "customize-cra": "^0.8.0",
     "formik": "^2.0.3",
     "gatsby-plugin-resolve-src": "^2.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "material-ui-next-pickers": "^0.0.21",
     "prop-types": "^15.7.2",
